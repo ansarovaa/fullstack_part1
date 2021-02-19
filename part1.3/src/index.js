@@ -9,18 +9,49 @@ const Button = (props) => {
   )
 }
 
-const Statistics = (props) => {
-  if (props.allClicks.length === 0) {
+const Buttons = ({goodOpinion, neutralOpinion, badOpinion}) => {
+  return (
+    <div>
+       <Button
+        handleClick={goodOpinion}
+        text='good'
+      />
+      <Button
+        handleClick={neutralOpinion}
+        text='neutral'
+      />     
+      <Button
+        handleClick={badOpinion}
+        text='bad'
+      />
+    </div>
+  )
+}
+
+const Statistic = ({text, counter, percent}) =>{
+  return (
+    <div>{text} {counter} {percent}</div>
+  )
+}
+
+const Statistics = ({good, neutral, bad, all, positive, average}) => {
+  if (all > 0) {
     return (
       <div>
-        no feedback given
+      <Statistic text = 'good' counter={good}/> 
+      <Statistic text = 'neutral' counter={neutral}/> 
+      <Statistic text = 'bad' counter={bad}/> 
+      <Statistic text = 'All' counter={all}/> 
+      <Statistic text = 'positive' counter={positive}/>
+      <Statistic text = 'average' counter={average} percent = ' %'/>       
       </div>
     )
-  }
+  } else {
 
   return (
-    <div>{props.text} {props.counter} {props.percent}</div>
+    <p>no feedbackis gathered</p>
   )
+  }
 }
 
 const App = () => {
@@ -42,28 +73,18 @@ const App = () => {
     setBad(bad + 1)
   }
 
+  const all = good + neutral + bad
+
+  const average = (good*1+neutral*0+bad*(-1))/(bad + good + neutral)
+
+  const positive = good / (good + neutral + bad) * 100
+
   return (
     <div>
       <h1>give feedback</h1>
-      <Button
-        handleClick={goodOpinion}
-        text='good'
-      />
-      <Button
-        handleClick={neutralOpinion}
-        text='neutral'
-      />     
-      <Button
-        handleClick={badOpinion}
-        text='bad'
-      />
+      <Buttons goodOpinion = {goodOpinion} neutralOpinion = {neutralOpinion} badOpinion = {badOpinion}/>
       <h1>statistics</h1>
-      <p>good {good}</p>
-      <p>neutral {neutral}</p>
-      <p>bad {bad}</p>
-      <Statistics   allClicks={allClicks} text = 'All' counter={bad + good + neutral}/> 
-      <Statistics   allClicks={allClicks} text = 'average' counter={(good*1+neutral*0+bad*(-1))/(bad + good + neutral)}/>    
-      <Statistics   allClicks={allClicks} text = 'positive' counter={(good)/(bad + good + neutral)*100} percent = ' %'/>      
+      <Statistics good = {good} neutral = {neutral} bad = {bad} all = {all} positive = {positive} average = {average}/>   
     </div>
   )
 }

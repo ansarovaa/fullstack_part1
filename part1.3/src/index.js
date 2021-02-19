@@ -15,6 +15,12 @@ const Button = (props) => {
   )
 }
 
+const Statistics = (props) => {
+  return (
+    <div>{props.text} {props.counter} {props.percent}</div>
+  )
+}
+
 const App = () => {
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
@@ -44,8 +50,8 @@ const App = () => {
       <Display text = 'neutral' counter={neutral}/>
       <Display text = 'bad' counter={bad}/> 
       <Display text = 'All' counter={bad + good + neutral}/> 
-      <Display text = 'positive' counter={(good*1+neutral*0+bad*(-1))/(bad + good + neutral)}/>    
-      <Display text = 'positive' counter={(good)/(bad + good + neutral)*100} percent = ' %'/>       
+      <Statistics text = 'average' counter={(good*1+neutral*0+bad*(-1))/(bad + good + neutral)}/>    
+      <Statistics text = 'positive' counter={(good)/(bad + good + neutral)*100} percent = ' %'/>       
     </div>
   )
 }

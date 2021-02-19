@@ -38,12 +38,34 @@ const Statistics = ({good, neutral, bad, all, positive, average}) => {
   if (all > 0) {
     return (
       <div>
-      <Statistic text = 'good' counter={good}/> 
-      <Statistic text = 'neutral' counter={neutral}/> 
-      <Statistic text = 'bad' counter={bad}/> 
-      <Statistic text = 'All' counter={all}/> 
-      <Statistic text = 'positive' counter={positive}/>
-      <Statistic text = 'average' counter={average} percent = ' %'/>       
+        <table>
+        <tbody>
+          <tr>
+            <td><Statistic text = 'good'/> </td>
+            <td><Statistic counter={good}/></td>
+          </tr>
+          <tr>
+            <td><Statistic text = 'neutral'/> </td>
+            <td><Statistic counter={neutral}/> </td>
+          </tr>
+          <tr>
+            <td><Statistic text = 'bad'/> </td>
+            <td><Statistic counter={bad}/> </td>
+          </tr> 
+          <tr>
+            <td> <Statistic text = 'All'/></td>
+            <td> <Statistic counter={all}/> </td>
+          </tr>  
+          <tr>
+            <td><Statistic text = 'positive'/></td>
+            <td><Statistic counter={positive}/></td>
+          </tr>  
+          <tr>
+            <td><Statistic text = 'average'/>  </td>
+            <td><Statistic counter={average} percent = ' %'/>  </td>
+          </tr>           
+        </tbody>
+        </table>
       </div>
     )
   } else {

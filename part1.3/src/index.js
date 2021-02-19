@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 
 const Display = (props) => {
   return (
-    <div>{props.text} {props.counter}</div>
+    <div>{props.text} {props.counter} {props.percent}</div>
   )
 }
 
@@ -42,7 +42,10 @@ const App = () => {
       <h1>statistics</h1>
       <Display text = 'good' counter={good}/>
       <Display text = 'neutral' counter={neutral}/>
-      <Display text = 'bad' counter={bad}/>           
+      <Display text = 'bad' counter={bad}/> 
+      <Display text = 'All' counter={bad + good + neutral}/> 
+      <Display text = 'positive' counter={(good*1+neutral*0+bad*(-1))/(bad + good + neutral)}/>    
+      <Display text = 'positive' counter={(good)/(bad + good + neutral)*100} percent = ' %'/>       
     </div>
   )
 }

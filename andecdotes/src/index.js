@@ -18,7 +18,7 @@ const Button = (props) => {
 
 const App = (props) => {
   const [selected, setSelected] = useState(0)
-  const [score, setScore] = useState([0,0,0,0,0])
+  const [score, setScore] = useState([0,0,0,0,0,0])
   const nextAnecdote = () => setSelected(Math.floor(Math.random()*anecdotes.length))
   const voteAnecdote = () => {
     let copy = [...score]
@@ -26,9 +26,9 @@ const App = (props) => {
     setScore(copy)
   }
   
-
   return (
     <div>
+      <h1>Anecdotes of the day</h1>
       <Display text={anecdotes[selected]}/>
       <Button
         handleClick={voteAnecdote}
@@ -38,7 +38,9 @@ const App = (props) => {
         handleClick={nextAnecdote}
         text='Next anecdote'
       />
-      <Display text={score[selected]}/>
+      <p>It has {score[selected]} votes</p>
+      <h1>Anecdotes with most votes</h1>
+      <p>{anecdotes[score.indexOf(Math.max(...score))]}</p>
     </div>
   )
 }
